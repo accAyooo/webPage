@@ -1,10 +1,13 @@
 import React from 'react';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
-import PageRouter from './PageRouter.js'
+import PageRouter from './PageRouter.js';
+import App from '../views'
 
 const AppRouter = () => (
     <Router>
-        <Route path="/" component={PageRouter} />
+        <App>
+            <Route path="/" component={PageRouter} />
+        </App>
     </Router>
 )
 

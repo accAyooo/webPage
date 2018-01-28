@@ -1,13 +1,3 @@
-import React from 'react';
+import { App } from './App';
 
-class App extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return (
-            <Children></Children>
-        )
-    }
-}
+export default App;

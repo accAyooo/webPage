@@ -7,20 +7,27 @@ const One = () => (
     </div>
 )
 
-const Two = () => (
+const NotFound = () => (
+    <div><h1>404</h1></div>
+)
+
+const Login = () => (
     <div>
-        <h1>people</h1>
+        <h1>login</h1>
     </div>
 )
 
-const NotFound = () => (
-    <div><h1>404</h1></div>
+const Register = () => (
+    <div>
+        <h1>register</h1>
+    </div>
 )
 
 const PageRouter = () => (
     <Switch>
         <Route exact path="/" component={One}/>
-        <Route path="/user" component={Two}/>
+        <Route path="account/login" component={Login} />
+        <Route path="account/register" component={Register} />
         <Route component={NotFound} />
     </Switch>
 )
