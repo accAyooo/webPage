@@ -18,8 +18,15 @@ export const fetchUserFailure = (error) => ({
 export const fetchGetUserInfo = (username, password) => {
 
     return (dispatch) => {
-        fetch("http://localhost:8081" + GET_USER_INFO).then((result) => {
-            try {
+        fetch("http://localhost:3001" + GET_USER_INFO, {
+            mode: 'cors',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            credentials: 'include'
+        }).then((result) => {
+            /*try {
                 if (result.status === 200) {
                     result.json().then((resultJson) => {
                         console.log(resultJson)
@@ -29,7 +36,9 @@ export const fetchGetUserInfo = (username, password) => {
                 }
             } catch (error) {
                 fetchUserFailure(error.message);
-            }
+            }*/
+
+            console.log(result);
         })
     }
 }
