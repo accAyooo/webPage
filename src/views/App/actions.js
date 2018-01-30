@@ -1,5 +1,6 @@
 import { FETCH_FAIL, FETCH_START, FETCH_SUCCESS } from "./actionTypes.js";
-import { GET_USER_INFO } from "../../constants/fetchUrl";
+import { GET_USER_INFO_URL } from "../../constants/fetchUrl";
+import * as fetch from "../../utils/fetch.js";
 
 export const fetchUserStart = () => ({
     type: FETCH_START
@@ -10,35 +11,24 @@ export const fetchUserSuccess = (result) => ({
     result
 });
 
-export const fetchUserFailure = (error) => ({
+export const fetchUserFailure = (result) => ({
     type: FETCH_FAIL,
-    error
+    result
 })
 
 export const fetchGetUserInfo = (username, password) => {
-
     return (dispatch) => {
-        fetch("http://localhost:3001" + GET_USER_INFO, {
-            mode: 'cors',
-            credentials: 'include',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            credentials: 'include'
-        }).then((result) => {
-            /*try {
-                if (result.status === 200) {
-                    result.json().then((resultJson) => {
-                        console.log(resultJson)
-                    })
-                } else {
-                    throw new Error("fail to get response(userinfo) with status" + result.status);
+        fetch.get(GET_USER_INFO_URL, {}).then((result) => {
+            try {
+                if (result.status !== 200) {
+                    throw new Error("failed to get user info from server");
                 }
+                result.json().then((resultJson) => {
+                    dispatch(fetchUserSuccess(resultJson.data));
+                })
             } catch (error) {
-                fetchUserFailure(error.message);
-            }*/
-
-            console.log(result);
+                dispatch(fetchUserFailure(error))
+            }
         })
     }
 }

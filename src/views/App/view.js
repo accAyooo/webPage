@@ -1,7 +1,7 @@
 import React from 'react';
-import { MuiThemeProvider } from 'material-ui';
 import * as actions from "./actions";
 import { connect } from 'react-redux';
+import { FETCH_FAIL, FETCH_SUCCESS, FETCH_START } from "./actionTypes";
 
 class App extends React.Component {
 
@@ -10,14 +10,27 @@ class App extends React.Component {
     }
 
     render() {
-        return (
-            <MuiThemeProvider>
-                {this.props.children}
-            </MuiThemeProvider>
-        )
+        switch(this.props.App.userinfo.status) {
+            case FETCH_START:
+                return (
+                    <h1>loading...</h1>
+                );
+            case FETCH_SUCCESS:
+                return (
+                    <div>
+                        {this.props.children}
+                    </div>
+                );
+            case FETCH_FAIL:
+                return (
+                    <div>
+                        {this.props.App.userinfo.data}
+                    </div>
+                );
+        }
     }
 }
-
+const mapStateToProps = (state) => (state);
 const mapDispatchToProps = (dispatch) => {
     return {
         getUserInfo: () => {
@@ -26,4 +39,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

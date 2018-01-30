@@ -1,11 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-
-const One = () => (
-    <div>
-        <h1>home</h1>
-    </div>
-)
+import { view as Home } from "../views/Home/";
 
 const NotFound = () => (
     <div><h1>404</h1></div>
@@ -25,7 +20,7 @@ const Register = () => (
 
 const PageRouter = () => (
     <Switch>
-        <Route exact path="/" component={One}/>
+        <Route exact path="/" component={Home}/>
         <Route path="account/login" component={Login} />
         <Route path="account/register" component={Register} />
         <Route component={NotFound} />
