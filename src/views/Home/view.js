@@ -1,19 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Header from "../Header/view";
 
 class Home extends React.Component {
-    constructor(props) {
-        super(props);
-        this.clickHandler = this.clickHandler.bind(this);
-    }
-
-    clickHandler() {
-        console.log(this.props);
-    }
 
     render() {
         return (
-            <div onClick={this.clickHandler}>home</div>
+            <div className="main">
+                <Header/>
+                <div>home</div>
+            </div>
         )
     }
 }

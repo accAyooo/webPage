@@ -1,7 +1,10 @@
 import React from 'react';
 import * as actions from "./actions";
 import { connect } from 'react-redux';
-import { FETCH_FAIL, FETCH_SUCCESS, FETCH_START } from "./actionTypes";
+
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import BaseTheme from "material-ui/styles/baseThemes/lightBaseTheme";
 
 class App extends React.Component {
 
@@ -10,27 +13,13 @@ class App extends React.Component {
     }
 
     render() {
-        switch(this.props.App.userinfo.status) {
-            case FETCH_START:
-                return (
-                    <h1>loading...</h1>
-                );
-            case FETCH_SUCCESS:
-                return (
-                    <div>
-                        {this.props.children}
-                    </div>
-                );
-            case FETCH_FAIL:
-                return (
-                    <div>
-                        {this.props.App.userinfo.data}
-                    </div>
-                );
-        }
+        return (
+            <MuiThemeProvider muiTheme={getMuiTheme(BaseTheme)}>
+                {this.props.children}
+            </MuiThemeProvider>
+        )
     }
 }
-const mapStateToProps = (state) => (state);
 const mapDispatchToProps = (dispatch) => {
     return {
         getUserInfo: () => {
@@ -39,4 +28,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(null, mapDispatchToProps)(App);
