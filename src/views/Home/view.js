@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Header from "../Header/view";
+import AppBar from "../AppBar/view";
 
 class Home extends React.Component {
 
     render() {
         return (
             <div className="main">
-                <Header/>
+                <AppBar/>
                 <div>home</div>
             </div>
         )

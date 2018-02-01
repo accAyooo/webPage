@@ -13,6 +13,9 @@ const LoggedButton = () => (
         }
         targetOrigin={{horizontal: 'right', vertical: 'top'}}
         anchorOrigin={{horizontal: 'right', vertical: 'top'}}
+        iconStyle={{
+            color: "#fff"
+        }}
     >
         <MenuItem primaryText="刷新"/>
         <MenuItem primaryText="登出"/>
@@ -21,14 +24,17 @@ const LoggedButton = () => (
 LoggedButton.muiName = 'IconMenu';
 
 const LoginButton = () => (
-    <FlatButton label="login" />
+    <FlatButton style={{
+        color: "#fff",
+        marginTop: "5px"
+    }} label="登录" />
 )
 LoginButton.muiName = 'FlatButton';
 
 class Header extends React.Component {
 
     render() {
-        const isLogin = (this.props.status == status.SUCCESS && this.props.data !== undefined);
+        const isLogin = (this.props.status === status.SUCCESS && this.props.data !== undefined);
 
         return (
             <AppBar

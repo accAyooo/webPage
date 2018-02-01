@@ -1,3 +1,1 @@
-import view from './view.js';
-
-export {view};
+export default Header
